@@ -18,8 +18,7 @@ from django.urls import path, include
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
-
-
+from send import views as contact_views
 schema_view = get_schema_view(
     openapi.Info(
         title="INCOME EXPENSES API",
@@ -37,6 +36,7 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('authentication.urls')),
+    path('contact/', contact_views.ContactView.as_view(), name='contact'),
     path('social_auth/', include(('social_auth.urls', 'social_auth'),
                                  namespace="social_auth")),
     path('expenses/', include('expenses.urls')),
